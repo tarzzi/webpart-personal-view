@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "webpart-personal-view-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/webpartPersonalView/WebpartPersonalViewWebPart.js",
+          "manifest": "./src/webparts/webpartPersonalView/WebpartPersonalViewWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "WebpartPersonalViewWebPartStrings": "lib/webparts/webpartPersonalView/loc/{locale}.js"
+  }
+}
