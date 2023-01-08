@@ -12,36 +12,26 @@ export default function MailItem(mailItem: any): JSX.Element {
     childrenGap: 5,
     padding: 10,
   };
-  const bodyPreviewSuffixed = item.bodyPreview.length < 250 ? item.bodyPreview : item.bodyPreview.substring(0, 250) + "..."; 
-
+  const bodyPreviewSuffixed =
+    item.bodyPreview.length < 250
+      ? item.bodyPreview
+      : item.bodyPreview.substring(0, 250) + "...";
+  console.log(item);
   return (
-    <Stack horizontal tokens={stackTokens} className={styles.container}>
-      <Stack.Item className={styles.info} disableShrink>
-        <Stack tokens={stackTokens}>
-          <Text className={styles.bold}> {item.sender.emailAddress.name} </Text>
-          <Text className={styles.italic}> {receieved} </Text>
-        </Stack>
-      </Stack.Item>
-      <Stack.Item align="center" tokens={stackTokens}>
-        <Text> {bodyPreviewSuffixed} </Text>
-      </Stack.Item>
-    </Stack>
+    <a href={item.webLink} target="_blank" rel="noreferrer">
+      <Stack horizontal tokens={stackTokens} className={styles.container}>
+        <Stack.Item className={styles.info} disableShrink>
+          <Stack tokens={stackTokens}>
+            <Text className={styles.bold}>
+              {item.sender.emailAddress.name}
+            </Text>
+            <Text className={styles.italic}> {receieved} </Text>
+          </Stack>
+        </Stack.Item>
+        <Stack.Item align="center" tokens={stackTokens}>
+          <Text> {bodyPreviewSuffixed} </Text>
+        </Stack.Item>
+      </Stack>
+    </a>
   );
-
-  /*   return (
-    <div className={styles.container}>
-      <a href={item.webLink} target="_blank" rel="noreferrer">
-        <p>
-          {item.sender.emailAddress.name} - {receieved}
-        </p>
-        <p className={styles.bold}> </p>
-        <Stack tokens={stackTokens}>
-          <Separator>
-            <Text className={styles.bold}>  {item.subject} </Text>
-          </Separator>
-        </Stack>
-        <p className={styles.italic}> {item.bodyPreview} </p>
-      </a>
-    </div>
-  ); */
 }
