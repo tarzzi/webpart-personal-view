@@ -22,8 +22,6 @@ p{
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -33,6 +31,14 @@ p{
   }
 }
 
+.info{
+  width: 150px;
+}
+
+.reset{
+  margin: 0;
+  padding: 0;
+}
 
 .container > p {
   margin: 0;
