@@ -26,14 +26,14 @@ export default function DriveItem(file: any): JSX.Element {
 
   return (
     <div className={styles.container}>
-      <Stack tokens={stackTokens}>
-        <Stack.Item>
+      <Stack horizontal grow={3} tokens={stackTokens}>
+        <Stack.Item className={styles.fullWidth} >
           <Stack tokens={stackTokens}>
             <Text  className={styles.bold}>{file.title}</Text>
             <Text className={styles.italic}>{file.type}</Text>
           </Stack>
         </Stack.Item>
-        <Stack.Item align="center" tokens={stackTokens}>
+        <Stack.Item align="end" tokens={stackTokens}>
           <a href={url} target="_blank" rel="noreferrer">
             <Image
               onError={({ currentTarget }) => {
