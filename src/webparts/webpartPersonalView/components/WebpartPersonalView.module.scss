@@ -9,11 +9,33 @@
     font-family: $ms-font-family-fallbacks;
   }
 }
+ 
+section{
+  padding: 0 1em !important;
+}
+
+.filesection{
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  gap: 5px 10px;
+}
+
+.menu_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-gap: 1em;
+  margin-bottom: 1em;
+}
 
 .welcome {
   text-align: center;
 }
-
+.container {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 .welcomeImage {
   width: 100%;
   max-width: 420px;
