@@ -6,6 +6,10 @@ import { SPHttpClientResponse } from "@microsoft/sp-http";
 import { DefaultButton } from '@fluentui/react/lib/Button';
 import { Text } from "@fluentui/react/lib/Text";
 
+// import icons for mail, calendar, files and todo
+import { initializeIcons } from "@fluentui/react/lib/Icons";
+initializeIcons();
+
 import MailItem from "./mail/MailItem";
 import CalendarItem from "./calendar/CalendarItem";
 import DriveItem from "./drive/DriveItem";
@@ -49,7 +53,7 @@ export default class WebpartPersonalView extends React.Component<
       .getClient("3")
       .then((client: MSGraphClientV3) => {
         client
-          .api("/me/mailFolders/inbox/messages")
+          .api("/me/mailFolders/inbox/messages?$top=6")
           .version("v1.0")
           .get((err: SPHttpClientResponse, res: SPHttpClientResponse) => {
             if (err) {
@@ -69,7 +73,7 @@ export default class WebpartPersonalView extends React.Component<
       .getClient("3")
       .then((client: MSGraphClientV3) => {
         client
-          .api("/me/calendar/events")
+          .api("/me/calendar/events?$top=6")
           .version("v1.0")
           .get((err: SPHttpClientResponse, res: SPHttpClientResponse) => {
             if (err) {
@@ -131,6 +135,12 @@ export default class WebpartPersonalView extends React.Component<
       userDisplayName,
     } = this.props;
 
+    const mailIconProps = { iconName: "Mail" };
+    const calendarIconProps = { iconName: "Calendar" };
+    const filesIconProps = { iconName: "OneDriveLogo" };
+    const todoIconProps = { iconName: "ToDoLogoOutline" };
+
+
     return (
       <>
         <section
@@ -138,14 +148,15 @@ export default class WebpartPersonalView extends React.Component<
             hasTeamsContext ? styles.teams : ""
           }`}
         >
-          <div>
-            <h1>Hello {userDisplayName}!</h1>
+          <div className={styles.welcome}>
+            <Text variant="xLarge">Hello {userDisplayName}!</Text><br />
+            <Text variant="medium"> Welcome to your personal view</Text>
           </div>
           <div className={styles.menu_grid}>
-            <DefaultButton primary={this.state.activeView === "mail" ? true : false} text="Mail" onClick={() => this._changeActiveView("mail")}  />
-            <DefaultButton primary={this.state.activeView === "calendar" ? true : false} text="Calendar" onClick={() => this._changeActiveView("calendar")} />
-            <DefaultButton primary={this.state.activeView === "files" ? true : false} text="Files" onClick={() => this._changeActiveView("files")} />
-            <DefaultButton disabled={true} primary={this.state.activeView === "todo" ? true : false} text="Todo" onClick={() => this._changeActiveView("todo")} />
+            <DefaultButton iconProps={mailIconProps} primary={this.state.activeView === "mail" ? true : false} text="Mail" onClick={() => this._changeActiveView("mail")}  />
+            <DefaultButton iconProps={calendarIconProps} primary={this.state.activeView === "calendar" ? true : false} text="Calendar" onClick={() => this._changeActiveView("calendar")} />
+            <DefaultButton iconProps={filesIconProps} primary={this.state.activeView === "files" ? true : false} text="Files" onClick={() => this._changeActiveView("files")} />
+            <DefaultButton iconProps={todoIconProps} disabled={true} primary={this.state.activeView === "todo" ? true : false} text="Todo" onClick={() => this._changeActiveView("todo")} />
           </div>
         </section>
 
