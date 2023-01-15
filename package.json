@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@fluentui/react": "^8.104.2",
+    "@fluentui/react-file-type-icons": "^8.8.5",
     "@fluentui/react-icons": "^2.0.190",
     "@microsoft/sp-core-library": "1.16.1",
     "@microsoft/sp-lodash-subset": "1.16.1",
