@@ -2,7 +2,7 @@
 
 ## Summary
 
-Short summary on functionality and used technologies.
+Webpart to display users most recent personal mails, drive items and calendar events.
 
 [picture of the solution in action, if possible]
 
@@ -25,14 +25,13 @@ Short summary on functionality and used technologies.
 
 | Solution    | Author(s)                                               |
 | ----------- | ------------------------------------------------------- |
-| folder name | Author details (name, company, twitter alias with link) |
+| webpart-personal-view | Tarmo Urrio |
 
 ## Version history
 
 | Version | Date             | Comments        |
 | ------- | ---------------- | --------------- |
-| 1.1     | March 10, 2021   | Update comment  |
-| 1.0     | January 29, 2021 | Initial release |
+| 1.0     | January 10, 2023   | Initial version |
 
 ## Disclaimer
 
@@ -52,6 +51,7 @@ Short summary on functionality and used technologies.
 
 ## Features
 
+TODO
 Description of the extension that expands upon high-level summary above.
 
 This extension illustrates the following concepts:
