@@ -7,4 +7,12 @@ export interface IWebpartPersonalViewProps {
   hasTeamsContext: boolean;
   userDisplayName: string;
   context : WebPartContext;
+  greetingPrefix: string;
+  greetingSuffix: string;
+  greetingShowUser: boolean;
+  subGreeting: string;
+  showGreeting: boolean;
+  mailRetrieveCount: number;
+  eventRetrieveCount: number;
+  fileRetrieveCount: number;
 }

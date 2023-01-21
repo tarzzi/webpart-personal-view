@@ -1,7 +1,7 @@
 define([], function() {
   return {
-    "PropertyPaneDescription": "Description",
-    "BasicGroupName": "Group Name",
+    "PropertyPaneDescription": "Webpart style settings and properties",
+    "BasicGroupName": "Greeting settings",
     "DescriptionFieldLabel": "Description Field",
     "AppLocalEnvironmentSharePoint": "The app is running on your local environment as SharePoint web part",
     "AppLocalEnvironmentTeams": "The app is running on your local environment as Microsoft Teams app",
@@ -10,6 +10,16 @@ define([], function() {
     "AppSharePointEnvironment": "The app is running on SharePoint page",
     "AppTeamsTabEnvironment": "The app is running in Microsoft Teams",
     "AppOfficeEnvironment": "The app is running in office.com",
-    "AppOutlookEnvironment": "The app is running in Outlook"
+    "AppOutlookEnvironment": "The app is running in Outlook",
+    "GreetingText": "Hello!",
+    "GreetingFieldPrefix": "Greeting text prefix",
+    "GreetingFieldSuffix": "Greeting text suffix",
+    "GreetingFieldShowUser": "Show user name in greeting",
+    "SubGreetingFieldLabel": "Sub greeting text",
+    "ShowGreetingFieldLabel": "Show greeting",
+    "RetrievableItemsGroupName" : "Item count settings",
+    "MailRetrieveCountFieldLabel": "Mail items to show",
+    "EventRetrieveCountFieldLabel": "Event items to show",
+    "FileRetrieveCountFieldLabel": "File items to show",
   }
 });

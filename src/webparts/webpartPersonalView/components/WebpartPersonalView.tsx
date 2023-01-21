@@ -48,12 +48,25 @@ export default class WebpartPersonalView extends React.Component<
     this._getRecentFiles();
   }
 
+  public componentDidUpdate(prevProps: IWebpartPersonalViewProps): void {
+    if (prevProps.mailRetrieveCount !== this.props.mailRetrieveCount &&  prevProps.mailRetrieveCount !== undefined) {
+      this._getMail();
+    }
+    if (prevProps.eventRetrieveCount !== this.props.eventRetrieveCount &&  prevProps.eventRetrieveCount !== undefined) {
+      this._getCalendar();
+    }
+    if (prevProps.fileRetrieveCount !== this.props.fileRetrieveCount &&  prevProps.fileRetrieveCount !== undefined) {
+      this._getRecentFiles();
+    }
+  }
+
+
   private _getMail = (): void => {
     this.props.context.msGraphClientFactory
       .getClient("3")
       .then((client: MSGraphClientV3) => {
         client
-          .api("/me/mailFolders/inbox/messages?$top=6")
+          .api(`/me/mailFolders/inbox/messages?$top=${this.props.mailRetrieveCount}`)
           .version("v1.0")
           .get((err: SPHttpClientResponse, res: SPHttpClientResponse) => {
             if (err) {
@@ -73,13 +86,14 @@ export default class WebpartPersonalView extends React.Component<
       .getClient("3")
       .then((client: MSGraphClientV3) => {
         client
-          .api("/me/calendar/events?$top=6")
+          .api(`/me/calendar/events?$top=${this.props.eventRetrieveCount}`)
           .version("v1.0")
           .get((err: SPHttpClientResponse, res: SPHttpClientResponse) => {
             if (err) {
               console.log(err);
               return;
             }
+            console.log(res)
             this.setState({ calendar: res });
           });
       })
@@ -93,7 +107,7 @@ export default class WebpartPersonalView extends React.Component<
       .getClient("3")
       .then((client: MSGraphClientV3) => {
         client
-          .api(`/me/insights/used?$filter=resourceVisualization/type ne 'spsite' and NOT (resourceVisualization/type eq 'Web')&$orderby=lastUsed/lastAccessedDateTime desc&$top=6`)
+          .api(`/me/insights/used?$filter=resourceVisualization/type ne 'spsite' and NOT (resourceVisualization/type eq 'Web')&$orderby=lastUsed/lastAccessedDateTime desc&$top=${this.props.fileRetrieveCount}`)
           .version("v1.0")
           .get((err: SPHttpClientResponse, res: SPHttpClientResponse) => {
             if (err) {
@@ -133,6 +147,11 @@ export default class WebpartPersonalView extends React.Component<
     const {
       hasTeamsContext,
       userDisplayName,
+      greetingPrefix,
+      greetingSuffix,
+      greetingShowUser,
+      subGreeting,
+      showGreeting
     } = this.props;
 
     const mailIconProps = { iconName: "Mail" };
@@ -148,10 +167,12 @@ export default class WebpartPersonalView extends React.Component<
             hasTeamsContext ? styles.teams : ""
           }`}
         >
+          {showGreeting && (
           <div className={styles.welcome}>
-            <Text variant="xLarge">Hello {userDisplayName}!</Text><br />
-            <Text variant="medium"> Welcome to your personal view</Text>
+            <Text variant="xLarge">{greetingPrefix} {greetingShowUser ? userDisplayName : ""}{greetingSuffix}</Text><br />
+            <Text variant="medium">{subGreeting}</Text>
           </div>
+          )}
           <div className={styles.menu_grid}>
             <DefaultButton iconProps={mailIconProps} primary={this.state.activeView === "mail" ? true : false} text="Mail" onClick={() => this._changeActiveView("mail")}  />
             <DefaultButton iconProps={calendarIconProps} primary={this.state.activeView === "calendar" ? true : false} text="Calendar" onClick={() => this._changeActiveView("calendar")} />
@@ -170,9 +191,7 @@ export default class WebpartPersonalView extends React.Component<
             this.state.mail.value.map((mailItem: any) => {
               return <MailItem key={mailItem.id} mailItem={mailItem} />;
             })}
-            
         </section>
-
         <section
           className={`${styles.webpartPersonalView} ${
             hasTeamsContext ? styles.teams : ""
@@ -199,7 +218,6 @@ export default class WebpartPersonalView extends React.Component<
               <Text variant="medium">No files found</Text>
             </div>
             }
-            
         </section>
         <section
           className={`${styles.webpartPersonalView} ${
