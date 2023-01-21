@@ -1,4 +1,4 @@
-# webpart-personal-view
+# Webpart for latest personal daily items
 
 ## Summary
 
