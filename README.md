@@ -1,10 +1,10 @@
-# webpart-personal-view
+# Webpart for latest personal daily items
 
 ## Summary
 
 Webpart to display users most recent personal mails, drive items and calendar events.
 
-[picture of the solution in action, if possible]
+![Sample image of webpart](sample.png)
 
 ## Used SharePoint Framework Version
 
