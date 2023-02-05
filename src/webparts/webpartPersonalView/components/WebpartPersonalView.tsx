@@ -182,18 +182,15 @@ export default class WebpartPersonalView extends React.Component<
         </section>
 
         <section
-          className={`${styles.webpartPersonalView} ${
-            hasTeamsContext ? styles.teams : ""
-          }`}
+          className={`${styles.webpartPersonalView} ${ hasTeamsContext ? styles.teams : ""}`}
         >
-
           {this.state.mail && this.state.activeView === "mail" &&
             this.state.mail.value.map((mailItem: any) => {
               return <MailItem key={mailItem.id} mailItem={mailItem} />;
             })}
         </section>
         <section
-          className={`${styles.webpartPersonalView} ${
+          className={`${styles.webpartPersonalView} ${styles.calendar}  ${
             hasTeamsContext ? styles.teams : ""
           }`}
         >

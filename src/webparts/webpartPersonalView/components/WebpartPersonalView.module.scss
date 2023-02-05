@@ -1,4 +1,4 @@
-@import '~@fluentui/react/dist/sass/References.scss';
+@import "~@fluentui/react/dist/sass/References.scss";
 
 .webpartPersonalView {
   overflow: hidden;
@@ -9,17 +9,24 @@
     font-family: $ms-font-family-fallbacks;
   }
 }
- 
-section{
+
+
+
+section {
   padding: 0 1em !important;
 }
 
-.filesection{
+.calendar {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 15px;
+}
+
+.filesection {
   display: grid;
   grid-template-columns: repeat(2, 50%);
   gap: 5px 10px;
 }
-
 
 .menu_grid {
   display: grid;
@@ -46,12 +53,16 @@ section{
   a {
     text-decoration: none;
     color: "[theme:link, default:#03787c]";
-    color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
+    color: var(
+      --link
+    ); // note: CSS Custom Properties support is limited to modern browsers only
 
     &:hover {
       text-decoration: underline;
       color: "[theme:linkHovered, default: #014446]";
-      color: var(--linkHovered); // note: CSS Custom Properties support is limited to modern browsers only
+      color: var(
+        --linkHovered
+      ); // note: CSS Custom Properties support is limited to modern browsers only
     }
   }
 }
